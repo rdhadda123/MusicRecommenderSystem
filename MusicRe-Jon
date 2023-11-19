@@ -1,0 +1,32 @@
+
+def mostLikes(publicTextData): 
+    """Prints out the most liked artist that the user has. If there is no artists with any likes, it prints the message 'Sorry, no user found.'.(Function done by Neel)"""
+    userArtistQuantityList=[]
+    for user in publicTextData:
+        userArtistQuantityList.append((len(publicTextData[user]),user))
+    userArtistQuantityList.sort()
+    if len(userArtistQuantityList)==0:
+        print('Sorry, no user found.')
+    else:
+        print(userArtistQuantityList[-1][1])
+
+def popularArtists(userName,publicTextData): 
+    """Prints the most popular artists in the text file. Increases the count while artistsInPublicTextList isn't empty. Then you append your count and your artistsInPublicTextList
+to your like list once the length of it is 1 or empty.(Function done by Jonathan)"""
+    artistsInPublicTextList=[]
+    for user in publicTextData:
+        artistsInPublicTextList+=publicTextData[user]
+    artistsInPublicTextList.sort()
+    artistLikingList=[]
+    count=1
+    while artistsInPublicTextList!=[]:
+        if len(artistsInPublicTextList)==1:
+            artistLikingList.append((count,artistsInPublicTextList[0]))
+        elif artistsInPublicTextList[0]==artistsInPublicTextList[1]:
+            count+=1
+        else:
+            artistLikingList.append((count,artistsInPublicTextList[0]))
+            count=1
+        artistsInPublicTextList=artistsInPublicTextList[1:]
+    artistLikingList.sort()
+    return artistLikingList
