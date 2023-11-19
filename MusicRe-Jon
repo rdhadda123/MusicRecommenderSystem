@@ -29,3 +29,13 @@ def popularArtists(userName,publicTextData):
         artistsInPublicTextList=artistsInPublicTextList[1:]
     artistLikingList.sort()
     return artistLikingList
+
+def recommendations(userName,publicTextData,userPreference): 
+    """Gets recommendation for a user based on the users in the dictionary and the user's preferences. 
+    Returns a list of the recommended artists based on user."""
+    recs=findRecommendation(userName,userPreference,publicTextData)
+    if len(recs)==0:
+        print("No recommendations available at this time.")
+    else:
+        for art in recs:
+            print(art)
