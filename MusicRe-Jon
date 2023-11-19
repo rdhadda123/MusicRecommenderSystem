@@ -1,4 +1,3 @@
-
 def mostLikes(publicTextData): 
     """Prints out the most liked artist that the user has. If there is no artists with any likes, it prints the message 'Sorry, no user found.'.(Function done by Neel)"""
     userArtistQuantityList=[]
@@ -12,7 +11,7 @@ def mostLikes(publicTextData):
 
 def popularArtists(userName,publicTextData): 
     """Prints the most popular artists in the text file. Increases the count while artistsInPublicTextList isn't empty. Then you append your count and your artistsInPublicTextList
-to your like list once the length of it is 1 or empty.(Function done by Jonathan)"""
+    to your like list once the length of it is 1 or empty."""
     artistsInPublicTextList=[]
     for user in publicTextData:
         artistsInPublicTextList+=publicTextData[user]
