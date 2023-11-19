@@ -1,5 +1,5 @@
 def mostLikes(publicTextData): 
-    """Prints out the most liked artist that the user has. If there is no artists with any likes, it prints the message 'Sorry, no user found.'.(Function done by Neel)"""
+    """Prints out the most liked artist that the user has. If there is no artists with any likes, it prints the message 'Sorry, no user found."""
     userArtistQuantityList=[]
     for user in publicTextData:
         userArtistQuantityList.append((len(publicTextData[user]),user))
