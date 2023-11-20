@@ -1,0 +1,80 @@
+def mostLikes(publicTextData): 
+    """Prints out the most liked artist that the user has. If there is no artists with any likes, it prints the message 'Sorry, no user found."""
+    userArtistQuantityList=[]
+    for user in publicTextData:
+        userArtistQuantityList.append((len(publicTextData[user]),user))
+    userArtistQuantityList.sort()
+    if len(userArtistQuantityList)==0:
+        print('Sorry, no user found.')
+    else:
+        print(userArtistQuantityList[-1][1])
+
+def popularArtists(userName,publicTextData): 
+    """Prints the most popular artists in the text file. Increases the count while artistsInPublicTextList isn't empty. 
+    to your like list once the length of it is 1 or empty."""
+    artistsInPublicTextList=[]
+    for user in publicTextData:
+        artistsInPublicTextList+=publicTextData[user]
+    artistsInPublicTextList.sort()
+    artistLikingList=[]
+    count=1
+    while artistsInPublicTextList!=[]:
+        if len(artistsInPublicTextList)==1:
+            artistLikingList.append((count,artistsInPublicTextList[0]))
+        elif artistsInPublicTextList[0]==artistsInPublicTextList[1]:
+            count+=1
+        else:
+            artistLikingList.append((count,artistsInPublicTextList[0]))
+            count=1
+        artistsInPublicTextList=artistsInPublicTextList[1:]
+    artistLikingList.sort()
+    return artistLikingList
+
+def recommendations(userName,publicTextData,userPreference): 
+    """Gets recommendation for a user based on the users in the dictionary and the user's preferences. 
+    Returns a list of the recommended artists based on user."""
+    recs=findRecommendation(userName,userPreference,publicTextData)
+    if len(recs)==0:
+        print("Cannot find any recommendations")
+    else:
+        for art in recs:
+            print(art)
+
+def findRecommendation(musicUser,userPreference,publicTextData): 
+    """Finds and returns a list of recommendations based on 
+    what the user inputted from preferences."""
+    bu=similarUserFinder(musicUser,userPreference,publicTextData)
+    if bu==None:
+        return []
+    else:
+        rec=drop(userPreference,publicTextData[bu])
+    return rec
+
+def preference(): 
+    """Returns the list of artist preferences of the user. 
+    The user inputs an artist that he/she likes and puts them 
+    in a list where all of the user's liked artist are located."""
+    userPreference=[]
+    userArtistPreference=input('Enter an artist that you like: \n')
+    while userArtistPreference !='':
+        if ((userArtistPreference.strip().title()) in userPreference)==False:
+  of           userPreference.append(userArtistPreference.strip().title())
+        userArtistPreference=input("Enter an artist that you like (Enter to finish): \n")
+    userPreference.sort()
+    return userPreference
+
+def findPreferences(userName,publicTextData):
+    """Returns a list of the users liked artists from the list that 
+    the user inputted in preferences."""
+    userArtistPreference=''
+    if userName in publicTextData:
+        return publicTextData[userName]
+    else:
+        userPreference=[]
+        userArtistPreference=input('Enter an artist that you like:\n')
+        while userArtistPreference !='':
+            if ((userArtistPreference.strip().title()) in userPreference)==False:
+                userPreference.append(userArtistPreference.strip().title())
+            userArtistPreference=input("Enter an artist that you like:\n")
+        userPreference.sort()
+        return userPreference
